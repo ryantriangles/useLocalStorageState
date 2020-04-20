@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 
-// Custom hook that behaves exactly like useState, but which stores the value
+// Custom hook that behaves exactly like `useState`, but which stores the value
 // in local storage on each update, and attempts to fetch the value from local
-// storage on each access. The `defaultValue` passed to the useState call only
-// gets used when `key` isn't found in local storage.
+// storage on each access. The `defaultValue` passed to the `useState` call
+// only gets used when `key` isn't found in local storage.
 function useLocalStorageState(key: string, defaultValue: any) {
   const [value, setValue] = useState(() => {
     const storedValue = localStorage.getItem(key);
@@ -17,7 +17,7 @@ function useLocalStorageState(key: string, defaultValue: any) {
         setValue(JSON.parse(e.newValue as string));
     };
     window.addEventListener("storage", storageEventListener);
-    // Clean up the old event listener on unmount or key change
+    // Clean up the old event listener on unmount or `key` change.
     return () => window.removeEventListener("storage", storageEventListener);
   }, [key]);
 
